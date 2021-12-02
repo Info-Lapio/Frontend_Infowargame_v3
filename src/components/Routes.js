@@ -3,11 +3,12 @@ import { Redirect, Route, Switch } from "react-router-dom";
 
 // page import
 import ctfPloblemPage from "../pages/ctfPloblemPage";
+import MainPage from "./main/Main";
 import MyPage from "../pages/MyPage";
 
 const LoggedInRoutes = () => (                  //로그인 이후 접근 가능
   <Switch>
-    <Route exact path="/" component={null} />       { /* 메인화면 */  }
+    <Route exact path="/" component={MainPage} />       { /* 메인화면 */  }
     <Route path="/rank" component={null} />         { /* 랭킹 */ }
     <Route path="/notice/:id" component={null} />   { /* 공지사항 아이디 Detail */ }
     <Route path="/profile" component={MyPage} />      { /* 유저 페이지 */ }
