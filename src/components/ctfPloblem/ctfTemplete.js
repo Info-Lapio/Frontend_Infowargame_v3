@@ -1,55 +1,46 @@
 import React from "react";
-import styled from "styled-components";
-import DefaultTemplete from "../DefaultTemplete";
+import { Link } from 'react-router-dom'
+import MenuBar from "../default/MenuBar";
+import ProblemBox from "./ProblemBox";
+import useCtfProblems from "../../hooks/useCtfProblems";
+import CtfDetailQ from "./CtfDetailQ";
+import * as S from './style'
 
-const InnerStyled = styled.div`
-  width: 1920px;
-  margin: 0 auto;
-  position: relative;
-`;
-const ProblemAreaStyled = styled.div`
-  margin: 0;
-  padding: 0;
-  width: 1445px;
-  height: 996px;
-  position: absolute;
-  top: 47px;
-  right: 97px;
-  bottom: 37px;
-  left: 378px;
-  border: 3px solid black;
-  border-radius: 30px;
-  box-sizing: border-box;
-`;
-const ProblemTopicStyled = styled.div`
-  position: absolute;
-  width: 178px;
-  height: 58px;
-  left: 22px;
-  top: -32px;
-  background-color: #fff;
-  z-index: 1;
+const CtfTemplete = (match) => {
+  const { pwnableProblems, reversingProblems, webProblems } = useCtfProblems()
 
-  font-family: Noto Sans KR;
-  font-style: normal;
-  font-weight: 900;
-  font-size: 40px;
-  line-height: 58px;
+  let subMenu
+  switch (match.id.params.id) {
+    case 'pwnable': subMenu = 'pwnable'; break
+    case 'reversing': subMenu = 'reversing'; break
+    case 'web': subMenu = 'web'; break
+    default: subMenu = "id"
+  }
 
-  text-align: center;
+  let pageName = match.id.url.slice(5)
+  pageName = subMenu === "id" ? pageName.slice(0, -2) : pageName
 
-  color: #2C2C2C;
-`;
+  let problems
+  switch (pageName) {
+    case 'pwnable': problems = pwnableProblems; break
+    case 'reversing': problems = reversingProblems; break;
+    case 'web': problems = webProblems; break
+    default: problems = pwnableProblems
+  }
 
-const ctfTemplete = () => {
   return(
-    <InnerStyled>
-      <DefaultTemplete />
-      <ProblemAreaStyled>
-        <ProblemTopicStyled>Pwnable</ProblemTopicStyled>
-      </ProblemAreaStyled>
-    </InnerStyled>
+    <div className="inner-style">
+      <MenuBar page={pageName}/>
+      <S.ProblemAreaStyled>
+        <S.ProblemTopicStyled>{pageName[0].toUpperCase() + pageName.slice(1)}</S.ProblemTopicStyled>
+        {problems.map(problem => {
+          const {id, title, score} = problem
+          return(<Link to={`/ctf/${subMenu}/${id}`}><ProblemBox title={title} score={score} /></Link>)
+        })}
+      </S.ProblemAreaStyled>
+      { !Number.isNaN(Number(match.id.params.id)) ? <CtfDetailQ id={match.id.params.id} page={pageName}/> : null }
+    </div>
   );
 };
 
-export default ctfTemplete;
+export default CtfTemplete;

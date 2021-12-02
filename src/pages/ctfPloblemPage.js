@@ -1,10 +1,12 @@
 import React from "react";
-import styled from "styled-components";
 import CtfTemplete from "../components/ctfPloblem/ctfTemplete";
+import CtfProviders from "../providers/CtfProviders";
 
-const ctfPloblemPage = () => {
+const ctfPloblemPage = ({match}) => {
   return(
-    <CtfTemplete />
+    <CtfProviders>
+      <CtfTemplete id={match}/>
+    </CtfProviders>
   );
 };
 
