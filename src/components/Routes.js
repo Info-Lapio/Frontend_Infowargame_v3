@@ -6,6 +6,7 @@ import MainPage from "../pages/MainPage";
 import NoticePage from "../pages/NoticePage";
 import MyPage from "../pages/MyPage";
 import EventPage from "../pages/Event";
+import LoginPage from "../pages/LoginPage";
 
 const LoggedInRoutes = () => (                  //로그인 이후 접근 가능
   <Switch>
@@ -32,14 +33,14 @@ const LoggedOutRoutes = () => (                 //로그인 이전 접근 경로
   <Switch>
     <Route exact path="/" component={null} />       { /*로그인 이전 메인화면 */ }
     <Route path="/signup" component={null} />       { /*회원가입 페이지 */ }
-    <Route path="/login" component={null} />        { /*로그인 페이지 */ }
+    <Route path="/login" component={LoginPage} />        { /*로그인 페이지 */ }
     <Route path="/administration" component={null} /> { /*admin 로그인 페이지 */ }
     <Redirect from="*" to="/" />                { /*다른 경로로 접근시 리다이렉션 경로 */ }
   </Switch>
 );
 
 const AppRouter = ({ isLoggedIn }) => 
-  <LoggedInRoutes />; // Test
+  <LoggedOutRoutes />; // Test
   // isLoggedIn ? <LoggedInRoutes /> : <LoggedOutRoutes />;
 
 export default AppRouter;
