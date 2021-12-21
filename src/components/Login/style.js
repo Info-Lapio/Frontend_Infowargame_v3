@@ -45,8 +45,11 @@ export const LoginTitle = styled.div`
 export const InputArea = styled.div`
   position: absolute;
   top: 270px;
-  left: 50%;
-  transform: translateX(-50%);
+  left: 71px;
+
+  input:nth-child(2){
+    top: 80px;
+  }
 `
 
 export const PutText = styled.input`
@@ -54,15 +57,36 @@ export const PutText = styled.input`
   width: 311px;
   height: 40px;
 
-  padding-left: 27px;
+  padding-left: 17px;
 
   background: white;
   border: 1px solid #000000;
   box-sizing: border-box;
   border-radius: 10px;
 
+  font-family: Noto Sans KR;
+  font-style: normal;
   font-weight: 500;
-  font-size: 18px;
-  line-height: 26px;
-  color: #9B9B9B;
+  font-size: 16px;
+`
+
+export const SubmitButton = styled.input`
+  position: absolute;
+  top: 220px;
+  width: 311px;
+  height: 50px;
+
+  border: 0;
+  background: #000000;
+  border-radius: 10px;
+
+  color: white;
+  font-family: CookieRun;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 30px;
+  
+  padding-bottom: 5px;
+
+  cursor: pointer;
 `

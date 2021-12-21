@@ -7,8 +7,11 @@ const LoginBox = () => {
       <S.MainLogoStyled />
       <S.LoginTitle>LOGIN</S.LoginTitle>
       <S.InputArea>
-        <LoginInput text="EMAIL"/>
-        <LoginInput text="PASSWORD"/>
+        <form>
+          <LoginInput text="EMAIL"/>
+          <LoginInput text="PASSWORD"/>
+          <S.SubmitButton type='submit' value="LOGIN"/>
+        </form>
       </S.InputArea>
     </S.LoginArea>
   )
