@@ -47,6 +47,24 @@ export const InputArea = styled.div`
   top: 270px;
   left: 71px;
 
+  .email, .password {
+    position: absolute;
+    width: 311px;
+    height: 40px;
+
+    padding-left: 17px;
+
+    background: white;
+    border: 1px solid #000000;
+    box-sizing: border-box;
+    border-radius: 10px;
+
+    font-family: Noto Sans KR;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 16px;
+  }
+
   input:nth-child(2){
     top: 80px;
   }
